@@ -1,14 +1,21 @@
 import React from 'react';
-import { Provider } from "react-redux";
-import { store } from "./src/store";
-import { Text, View } from 'react-native';
-
+import { Navigation } from './src/navigation';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { enableScreens } from 'react-native-screens';
+import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { store } from './src/store';
 
 function App(): React.JSX.Element {
+  enableScreens();
 
   return (
     <Provider store={store}>
-      <View><Text>Tinder Cat..</Text></View>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+        <NavigationContainer>
+          <Navigation />
+        </NavigationContainer>
+      </SafeAreaView>
     </Provider>
   );
 }
