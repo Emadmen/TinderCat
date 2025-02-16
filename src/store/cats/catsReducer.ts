@@ -4,10 +4,14 @@ import { catModel } from '../../models/cat';
 
 export interface CatsState {
   cats: catModel[];
+  isLoading: boolean;
+  error: any;
 }
 
 const initialState = {
   cats: [],
+  isLoading: false,
+  error: {}
 } as CatsState;
 
 export const catsSlice = createSlice({
@@ -18,6 +22,9 @@ export const catsSlice = createSlice({
     builder
       .addCase(getCatsDataAction.pending, state => {
         return { ...state, isLoading: true };
+      })
+      .addCase(getCatsDataAction.fulfilled, (state, action) => {
+        return { ...state, cats: action.payload, isLoading: false };
       })
   },
 })

@@ -2,9 +2,9 @@ import * as React from 'react';
 import HomeScreen from '../screens/Home';
 import ChatScreen from '../screens/Chat';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import User from '../res/svgs/user';
-import Message from '../res/svgs/message';
 import Cat from '../res/svgs/cat';
+import Message from '../res/svgs/message';
+import User from '../res/svgs/user';
 import { colors } from '../res/colors';
 
 const Tab = createBottomTabNavigator();

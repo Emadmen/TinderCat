@@ -1,7 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import catsReducer, { CatsState } from './cats/catsReducer';
+
+export interface IRootState {
+    cats: CatsState;
+}
 
 const reducer = combineReducers({
+    cats: catsReducer,
 });
 
 const store = configureStore({
