@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, ImageBackground, TouchableOpacity, Text } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
 import { useSelector } from 'react-redux';
 import { getCatsDataAction, sendVoteForCatAction } from '../../store/cats/catsAction';
@@ -25,15 +25,15 @@ function HomeScreen() {
         loadOverviewData();
     }, [loadOverviewData]);
 
-    const like = (): void => {
+    const onLike = (): void => {
         swiperRef.current?.swipeRight();
     }
 
-    const dislike = (): void => {
+    const onDislike = (): void => {
         swiperRef.current?.swipeLeft();
     }
 
-    const onLikeCat = (catIndex: number): void => {
+    const onSwipedRightCat = (catIndex: number): void => {
         dispatch(sendVoteForCatAction(createVoteRequest(catIndex)));
     }
 
@@ -47,52 +47,52 @@ function HomeScreen() {
 
     const renderCard = (card: catModel): React.ReactElement => {
         if (!card || !card?.breeds) {
-            console.error('card information is wrong');
-            return <></>;
+            return <></>
         }
 
         return (
-            <ImageBackground src={card?.url} imageStyle={{ borderRadius: 16 }} style={styles.card}>
+            <ImageBackground src={card?.url} imageStyle={styles.image} style={styles.card}>
                 <View style={styles.textContainer} >
                     <View style={styles.nameContainer}>
-                        <Text style={styles.name}>{card?.breeds[0]?.name}</Text>
+                        <Text style={styles.name}>{card?.breeds[0]?.name ?? "-"}</Text>
                         <Text>4</Text>
                     </View>
-                    <Text style={styles.origin}>{card?.breeds[0]?.origin}</Text>
+                    <Text style={styles.origin}>{card?.breeds[0]?.origin ?? "-"}</Text>
                 </View>
-            </ImageBackground >
+            </ImageBackground>
         )
     }
 
     return (
         <View style={styles.container}>
-            <View style={{ width: '100%', backgroundColor: 'white' }}>
+            <View style={styles.swiperContainer}>
                 <Swiper
                     ref={swiperRef}
                     cards={cats}
-                    onSwipedRight={(catIndex) => onLikeCat(catIndex)}
+                    onSwipedRight={(catIndex) => onSwipedRightCat(catIndex)}
                     renderCard={(card) => renderCard(card)}
                     cardIndex={0}
                     backgroundColor={'white'}
                     showSecondCard={true}
                     stackScale={0}
                     stackSeparation={0}
-                    containerStyle={{ height: 520 }}
+                    containerStyle={styles.swiper}
                     stackSize={2}>
                 </Swiper>
             </View>
 
             <View style={styles.btnsContainer}>
 
-                <TouchableOpacity onPress={dislike} style={styles.roundBtn}>
+                <TouchableOpacity onPress={onDislike} style={styles.roundBtn}>
                     <NoHeart />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={like} style={styles.roundBtn}>
+                <TouchableOpacity onPress={onLike} style={styles.roundBtn}>
                     <Heart />
                 </TouchableOpacity>
 
             </View>
+
         </View>
     );
 }

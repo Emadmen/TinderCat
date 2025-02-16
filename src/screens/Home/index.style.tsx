@@ -7,12 +7,17 @@ export default StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
+    },
+    swiperContainer: {
+        width: '100%',
+        height: 580,
+        backgroundColor: colors.white
     },
     card: {
-        borderColor: "#fff",
+        borderColor: colors.white,
         height: 446,
-        backgroundColor: "white",
+        backgroundColor: colors.white,
         elevation: 20,
         display: 'flex',
         alignItems: 'flex-end',
@@ -21,10 +26,16 @@ export default StyleSheet.create({
         paddingHorizontal: 20,
         paddingBottom: 0,
     },
+    swiper: {
+        height: 520
+    },
+    image: {
+        borderRadius: 16,
+    },
     textContainer: {
         paddingHorizontal: 10,
         paddingVertical: 5,
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
         height: 48,
@@ -57,18 +68,21 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: '#fff'
+        backgroundColor: colors.white
     },
     roundBtn: {
-        height: 54,
-        width: 54,
-        borderRadius: 54,
+        height: 60,
+        width: 60,
+        borderRadius: 46,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: 'rgba(0, 0, 0, 0.8)',
-        shadowOpacity: 0.8,
-        shadowRadius: 15,
-        shadowOffset: { width: 1, height: 13 },
+        shadowColor: 'rgba(0, 0, 0, 0.1)',
+        elevation: 8,
+        shadowOpacity: 8.8,
+        shadowRadius: 1,
+        shadowOffset: { width: 2, height: 10 },
+        borderWidth: .4,
+        borderColor: colors.lightGrey,
     }
 });

@@ -46,7 +46,7 @@ export const Navigation = () => {
             );
           },
         }}
-        component={HomeScreen} />
+        component={ChatScreen} />
     </Tab.Navigator>
   );
 }
